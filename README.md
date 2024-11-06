@@ -12,3 +12,15 @@ The script processes a JSON file containing neural network structure data and vi
 - **Interactive Visualization**: Visualized with `Plotly`, each neuron and connection shows relevant information on hover.
 - **Layer-Based Layout**: Layers are organized as vertical lines with connections spanning across layers.
 - **Edge Weights**: Edge weights are displayed on hover for each connection.# Neural-Network-Visualization
+
+## Model used (MNIST dataset)
+```
+model = Sequential([
+    Flatten(input_shape=(28, 28)),
+    Dense(20, activation='relu'),
+    Dense(10, activation='relu'),
+    Dense(10, activation='softmax')
+])
+
+model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
+```
