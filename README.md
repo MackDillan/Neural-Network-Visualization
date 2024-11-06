@@ -24,3 +24,6 @@ model = Sequential([
 
 model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
 ```
+
+
+
