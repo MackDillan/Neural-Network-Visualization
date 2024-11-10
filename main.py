@@ -53,18 +53,28 @@ def verify_topology_structure(original_json: str, deserialized_topology: Topolog
         print("Deep structure comparison failed: Discrepancies found in nested structures.")
         return False
 
+
+def get_json_topology(model, file_path = "topology.json", save = False):
+    topology = convert(model)
+    topology_json = topology.to_json()
+    if save:
+        with open(file_path, "w") as file:
+            file.write(topology_json)
+
+    return topology_json
+
+def load_topology(file_path = "topology.json"):
+    with open(file_path, "r") as file:
+        loaded_json = file.read()
+    deserialized_topology = Topology.from_json(loaded_json)
+
+    return deserialized_topology
+
 if __name__ == "__main__":
     model = create_mnist_model()
-    topology = convert(model)
 
-    topology_json = topology.to_json()
-    with open("topology.json", "w") as file:
-        file.write(topology_json)
-
-    with open("topology.json", "r") as file:
-        loaded_json = file.read()
-
-    deserialized_topology = Topology.from_json(loaded_json)
+    model_state_tree = model.get_state_tree()
+    topology_json = get_json_topology(model)
     
-    is_verified = verify_topology_structure(topology_json, deserialized_topology)
-    print("Verification result:", "Passed" if is_verified else "Failed")
+    # is_verified = verify_topology_structure(topology_json, deserialized_topology)
+    # print("Verification result:", "Passed" if is_verified else "Failed")

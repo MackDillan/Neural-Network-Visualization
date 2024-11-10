@@ -1,5 +1,4 @@
 import keras
-from json_tricks import dumps as np_dumps
 from core.src.models import Topology, Layer, Neuron, Connection
 
 
@@ -44,7 +43,7 @@ def convert(model: keras.Sequential) -> Topology:
                         weight=float(weight),
                         bias=bias,
                     )
-                    
+
                     #print(new_connection)
                     nn.add_connection(new_connection)
             neuron_counter += 1
