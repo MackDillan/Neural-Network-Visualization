@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   mongodb:
-    image: mongo:latest
+    image: mongo:4.0
     container_name: mongodb
     restart: always
     ports:
@@ -23,6 +23,8 @@ services:
       - mongodb
     networks:
       - app_network
+    environment:
+      - MONGO_URI=mongodb://admin:password@mongodb:27017/mydatabase  # Environment variable for MongoDB URI
 
 networks:
   app_network:

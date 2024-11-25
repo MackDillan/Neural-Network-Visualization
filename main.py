@@ -74,7 +74,7 @@ if __name__ == "__main__":
     model = create_mnist_model()
 
     model_state_tree = model.get_state_tree()
-    topology_json = get_json_topology(model)
+    #topology_json = get_json_topology(model)
     
     # is_verified = verify_topology_structure(topology_json, deserialized_topology)
     # print("Verification result:", "Passed" if is_verified else "Failed")

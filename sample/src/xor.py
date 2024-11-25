@@ -3,7 +3,8 @@ import numpy as np
 
 from core.src.convertor import convert
 
-if __name__ == "__main__":
+
+def create_xor_model():   
     X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
     y = np.array([[0], [1], [1], [0]])
 
@@ -14,10 +15,18 @@ if __name__ == "__main__":
     ])
 
     model.compile(loss='mse', optimizer='adam')
+    model.fit(X, y, epochs=1, verbose=1)
+
+
+if __name__ == "__main__":
+
+    model = create_xor_model()
+    topology = convert(model)
+    print(topology.to_dict())
     # model.fit(X, y, epochs=1_000, verbose=1)
 
-    topology = convert(model)
-    print(topology.to_json())
+    #topology = convert(model)
+    #print(topology.to_json())
     #
     # # model.compile(optimizer=tf.keras.optimizers.SGD(learning_rate=0.05),
     # #               loss="sparse_categorical_crossentropy",
